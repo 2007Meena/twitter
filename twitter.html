@@ -1,9 +1,7 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 <title>Mini Twitter</title>
-
 <style>
 *{box-sizing:border-box}
 body{margin:0;font-family:Arial;background:#f5f8fa}
@@ -32,307 +30,189 @@ border-radius:20px;cursor:pointer;margin-top:8px}
 .comment input{padding:8px;width:75%}
 .page{display:none;padding:20px}
 .active{display:block}
-
 @media(max-width:700px){
 .left{width:150px}.right{display:none}.main{width:100%}
 }
 </style>
 </head>
-
 <body>
-
 <header>
 <h1> Mini Twitter</h1>
 </header>
-
 <div class="app">
-
 <!-- LEFT SIDEBAR -->
-
 <div class="left">
-
 <div class="profile">
-
 <div class="circle">R</div>
-
 <h3>Roshini</h3>
-
 <div class="info">rosh@gmail.com</div>
-
 <p>
 <b>356</b> Followers ·
 <b>128</b> Following
 </p>
-
 <p>B.Tech IT Student</p>
 <p>Graphic Designer 🎨</p>
 <p>A passionate UI/UX Designer and IT student.I enjoy creating social media posts,logos,posters
      and digital graphics</p>
-
 </div>
-
 <button onclick="page('home')">🏠 Home</button>
 <button onclick="page('settings')">⚙ Settings</button>
-
 </div>
-
-
 <!-- MAIN -->
-
 <div class="main">
-
 <!-- HOME -->
-
 <div id="home" class="page active">
-
 <div class="box">
-
 <textarea id="text"
 placeholder="What's happening?"></textarea>
-
 <br>
-
 <button class="postbtn" onclick="post()">Post</button>
-
 </div>
-
-
 <div id="posts">
-
 <!-- POST 1 -->
-
 <div class="post">
-
 <b>Rithanya</b>
-
 <div class="info">
 rithu@gmail.com · 20 min ago
 </div>
-
 <div class="content">
 Hello everyone! Welcome to Mini Twitter 🚀
 </div>
-
 <div class="actions">
-
 <button onclick="like(this)">
 ❤️ <span>10</span>
 </button>
-
 <button onclick="comment(this)">
 💬 Comment
 </button>
-
 </div>
-
 <div class="comment">
-
 <input placeholder="Write a comment">
-
 <button onclick="add(this)">Send</button>
-
 </div>
-
 </div>
-
-
 <!-- POST 2 -->
-
 <div class="post">
-
 <b>Archana</b>
-
 <div class="info">
 achu@gmail.com · 1 hour ago
 </div>
-
 <div class="content">
 Learning JavaScript is fun! 💻
 </div>
-
 <div class="actions">
-
 <button onclick="like(this)">
 ❤️ <span>7</span>
 </button>
-
 <button onclick="comment(this)">
 💬 Comment
 </button>
-
 </div>
-
 <div class="comment">
-
 <input placeholder="Write a comment">
-
 <button onclick="add(this)">Send</button>
-
-</div>
-
-</div>
-
 </div>
 </div>
-
-
+</div>
+</div>
 <!-- SETTINGS -->
-
 <div id="settings" class="page">
-
 <h2>Settings</h2>
-
 <p>👤 Account</p>
 <p>🔐 Privacy</p>
 <p>🔔 Notifications</p>
 <p>🎨 Appearance</p>
 <p>🚪 Logout</p>
-
 </div>
-
 </div>
-
-
 <!-- RIGHT SIDEBAR -->
-
 <div class="right">
-
 <h3>Who to follow</h3>
-
 <p>
 <b>Anu</b><br>@anu
 <button class="follow" onclick="follow(this)">
 Follow
 </button>
 </p>
-
 <p>
 <b>Kishore</b><br>@kishore
 <button class="follow" onclick="follow(this)">
 Follow
 </button>
 </p>
-
 <p>
 <b>Suresh</b><br>@suresh
 <button class="follow" onclick="follow(this)">
 Follow
 </button>
 </p>
-
 </div>
-
 </div>
-
-
 <script>
-
 function page(x){
 document.querySelectorAll('.page')
 .forEach(p=>p.classList.remove('active'));
-
 document.getElementById(x)
 .classList.add('active');
 }
-
-
 function post(){
-
 let text=document.getElementById('text')
 .value.trim();
-
 if(!text)
 return alert("Write something!");
-
 let p=document.createElement('div');
-
 p.className='post';
-
 p.innerHTML=`
 <b>Roshini</b>
 <div class="info">
 rosh@gmail.com · Just now
 </div>
-
 <div class="content">${text}</div>
-
 <div class="actions">
-
 <button onclick="like(this)">
 ❤️ <span>0</span>
 </button>
-
 <button onclick="comment(this)">
 💬 Comment
 </button>
-
 <button onclick="this.closest('.post').remove()">
 🗑 Delete
 </button>
-
 </div>
-
 <div class="comment">
-
 <input placeholder="Write a comment">
-
 <button onclick="add(this)">Send</button>
-
 </div>`;
-
 document.getElementById('posts')
 .prepend(p);
-
 document.getElementById('text').value='';
 }
-
-
 function like(b){
-
 let n=b.querySelector('span');
-
 n.innerText=b.classList.toggle('liked')?
 ++n.innerText:--n.innerText;
 }
-
-
 function comment(b){
-
 let c=b.closest('.post')
 .querySelector('.comment');
-
 c.style.display=
 c.style.display=='block'?'none':'block';
 }
-
-
 function add(b){
-
 let i=b.previousElementSibling;
-
 if(i.value){
-
 let p=document.createElement('p');
-
 p.innerHTML=
 '💬 <b>Roshini:</b> '+i.value;
-
 b.parentElement.append(p);
-
 i.value='';
 }
 }
-
-
 function follow(b){
-
 b.innerText=
 b.innerText=='Follow'?
 'Following':'Follow';
 }
-
 </script>
-
 </body>
 </html>
-
